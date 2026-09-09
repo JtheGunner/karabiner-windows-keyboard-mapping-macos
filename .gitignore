@@ -1,4 +1,5 @@
 .DS_Store
+/.idea/
 # Karabiner writes these next to the live config; never commit them
 automatic_backups/
 karabiner-bkp-*.json
