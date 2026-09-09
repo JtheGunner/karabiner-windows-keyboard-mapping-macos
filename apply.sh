@@ -35,21 +35,5 @@ for f in "$REPO"/assets/complex_modifications/winkeys-*.json; do
   copy "$f" "$LIVE/assets/complex_modifications/$(basename "$f")"
 done
 
-# ── IDE keybindings (AGY IDE + Antigravity) ──────────────────────────────────
-# These are stored in assets/vscode-keybindings/ so they survive IDE reloads.
-KEYBINDINGS_SRC="$REPO/assets/vscode-keybindings"
-if [[ -d "$KEYBINDINGS_SRC" ]]; then
-  for entry in \
-    "antigravity-ide-keybindings.json:$HOME/Library/Application Support/Antigravity IDE/User/keybindings.json" \
-    "antigravity-keybindings.json:$HOME/Library/Application Support/Antigravity/User/keybindings.json"
-  do
-    src_name="${entry%%:*}"
-    dst="${entry##*:}"
-    src="$KEYBINDINGS_SRC/$src_name"
-    [[ -f "$src" ]] && [[ -d "$(dirname "$dst")" ]] && copy "$src" "$dst"
-  done
-fi
-
 $DRY && { echo $'\n(dry run - nothing changed)'; exit 0; }
 echo $'\nDone. Karabiner reloads automatically.'
-echo 'Reload AGY IDE window (Cmd+Shift+P → "Reload Window") to activate keybindings.'
