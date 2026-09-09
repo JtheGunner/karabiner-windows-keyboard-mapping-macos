@@ -1,0 +1,82 @@
+{
+  "title": "Win-keys \u00b7 05 \u00b7 Terminal newline (Shift+Enter)",
+  "rules": [
+    {
+      "description": "Shift+Enter => newline in terminals / Electron editors (Claude Code, zsh, REPLs)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^org\\.tabby$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^dev\\.warp\\.Warp$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^org\\.alacritty$",
+                "^io\\.alacritty$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^co\\.zeit\\.hyper$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            },
+            {
+              "key_code": "return_or_enter"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.visualstudio\\.code\\.oss$",
+                "^com\\.vscodium$",
+                "^com\\.exafunction\\.windsurf$",
+                "^dev\\.zed\\.Zed$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": [
+                "shift"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "title": "Win-keys \u00b7 35 \u00b7 Ctrl+click => Cmd+click (multi-select)",
+  "rules": [
+    {
+      "description": "Ctrl+left-click => Cmd+left-click  (discontiguous multi-select)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "pointing_button": "button1",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

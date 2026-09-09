@@ -1,0 +1,6 @@
+.DS_Store
+# Karabiner writes these next to the live config; never commit them
+automatic_backups/
+karabiner-bkp-*.json
+# GUI "save current profile as importable rule" autosaves (numeric names)
+assets/complex_modifications/[0-9]*.json

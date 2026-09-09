@@ -1,0 +1,96 @@
+{
+  "title": "Win-keys \u00b7 25 \u00b7 Terminal Ctrl+Left/Right => word motion",
+  "rules": [
+    {
+      "description": "Terminals: Ctrl+Left/Right => Option+Left/Right (word motion; also stops the Spaces shortcut)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.mitchellh\\.ghostty$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^dev\\.warp\\.Warp$",
+                "^org\\.tabby$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^io\\.kitty$",
+                "^org\\.alacritty$",
+                "^io\\.alacritty$",
+                "^co\\.zeit\\.hyper$",
+                "^co\\.zeit\\.hyperterm$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "left_arrow",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "shift",
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.apple\\.Terminal$",
+                "^com\\.googlecode\\.iterm2$",
+                "^com\\.mitchellh\\.ghostty$",
+                "^dev\\.warp\\.Warp-Stable$",
+                "^dev\\.warp\\.Warp$",
+                "^org\\.tabby$",
+                "^com\\.github\\.wez\\.wezterm$",
+                "^net\\.kovidgoyal\\.kitty$",
+                "^io\\.kitty$",
+                "^org\\.alacritty$",
+                "^io\\.alacritty$",
+                "^co\\.zeit\\.hyper$",
+                "^co\\.zeit\\.hyperterm$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "right_arrow",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "shift",
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_option"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

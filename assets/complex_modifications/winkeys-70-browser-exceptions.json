@@ -1,0 +1,411 @@
+{
+  "title": "Win-keys \u00b7 70 \u00b7 Browser exceptions (F5, F12, Ctrl+H history, zoom)  [order before 10]",
+  "rules": [
+    {
+      "description": "F5 / Ctrl+F5 => reload / hard-reload",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "f5",
+            "modifiers": {
+              "mandatory": [],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "r",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "f5",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "r",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "F12 => Cmd+Opt+I (DevTools)  \u2014 browsers only",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "f12",
+            "modifiers": {
+              "mandatory": [],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "i",
+              "modifiers": [
+                "left_command",
+                "left_option"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Ctrl+H => Cmd+Y (history)  \u2014 browsers only  [QWERTZ: 'z' keycode == physical Y]",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "z",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "Zoom: Ctrl + keypad -/+/0 => Cmd zoom out / in / reset  (browser)",
+      "manipulators": [
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "keypad_hyphen",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_hyphen",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "keypad_plus",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "keypad_0",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "keypad_0",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "hyphen",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com\\.google\\.Chrome$",
+                "^com\\.google\\.Chrome\\.beta$",
+                "^com\\.google\\.Chrome\\.canary$",
+                "^com\\.brave\\.Browser$",
+                "^com\\.brave\\.Browser\\.beta$",
+                "^com\\.brave\\.Browser\\.nightly$",
+                "^company\\.thebrowser\\.Browser$",
+                "^company\\.thebrowser\\.dia$",
+                "^com\\.apple\\.Safari$",
+                "^com\\.apple\\.SafariTechnologyPreview$",
+                "^com\\.microsoft\\.edgemac$",
+                "^org\\.mozilla\\.firefox$",
+                "^org\\.mozilla\\.firefoxdeveloperedition$",
+                "^org\\.mozilla\\.nightly$"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "0",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "caps_lock"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "0",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
