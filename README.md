@@ -25,19 +25,19 @@ Two things this config is careful about:
 
 ### Rule groups (`assets/complex_modifications/winkeys-*.json`)
 
-| # | group | scope |
-|---|-------|-------|
-| 05 | `Shift+Enter` => real newline (Claude Code, REPLs, Electron editors) | terminals + a few Electron apps |
-| 10 | PC‑style Ctrl: `left_control+<key>` => `left_command+<key>` | all GUI apps **except** terminals, RDP/VM clients, IDEs |
-| 15 | `Ctrl+Y` (QWERTZ physical Y) => Redo | GUI apps (runs before 10) |
-| 20 | `Ctrl+Home/End`, `Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete | all GUI apps **except** terminals + IDEs |
-| 25 | Terminals: `Ctrl+←/→` => `Option+←/→` word motion | **real terminals only** |
-| 35 | `Ctrl+left‑click` => `Cmd+left‑click` (discontiguous multi‑select) | all |
-| 40 | Terminals: `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N`, `Ctrl/Shift+Insert` | **real terminals only** |
-| 45 | IDEs: `Alt+0…9` (physical Alt = `left_command`) => `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr (right Option) stays untouched so `AltGr+1/2/3/7` type `\| @ # \|` | IDEs only |
-| 50 | `Alt+F4` => close window · `Ctrl+Space` => Spotlight | all |
-| 60 | Finder: `F2` => rename · `Enter` => open selected item | Finder |
-| 70 | Browser: `F5`/`Ctrl+F5` reload · `F12` DevTools · `Ctrl+H` history · `Ctrl`+keypad `-/+/0` zoom | browsers (runs before 10) |
+| #  | group                                                                                                                                                                | scope                                                   |
+|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
+| 05 | `Shift+Enter` => real newline (Claude Code, REPLs, Electron editors)                                                                                                 | terminals + a few Electron apps                         |
+| 10 | PC‑style Ctrl: `left_control+<key>` => `left_command+<key>`                                                                                                          | all GUI apps **except** terminals, RDP/VM clients, IDEs |
+| 15 | `Ctrl+Y` (QWERTZ physical Y) => Redo                                                                                                                                 | GUI apps (runs before 10)                               |
+| 20 | `Ctrl+Home/End`, `Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete                                                                               | all GUI apps **except** terminals + IDEs                |
+| 25 | Terminals: `Ctrl+←/→` => `Option+←/→` word motion                                                                                                                    | **real terminals only**                                 |
+| 35 | `Ctrl+left‑click` => `Cmd+left‑click` (discontiguous multi‑select)                                                                                                   | all                                                     |
+| 40 | Terminals: `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N`, `Ctrl/Shift+Insert`                                                                                                     | **real terminals only**                                 |
+| 45 | IDEs: `Alt+0…9` (physical Alt = `left_command`) => `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr (right Option) stays untouched so `AltGr+1/2/3/7` type `\| @ # \|` | IDEs only                                               |
+| 50 | `Alt+F4` => close window · `Ctrl+Space` => Spotlight                                                                                                                 | all                                                     |
+| 60 | Finder: `F2` => rename · `Enter` => open selected item                                                                                                               | Finder                                                  |
+| 70 | Browser: `F5`/`Ctrl+F5` reload · `F12` DevTools · `Ctrl+H` history · `Ctrl`+keypad `-/+/0` zoom                                                                      | browsers (runs before 10)                               |
 
 Rule 45 exists because macOS apps cannot tell left from right Option: an IDE
 shortcut on `Option+3` swallows the `#` that AltGr+3 (right Option) should type.
@@ -76,8 +76,7 @@ steps. Everything else is automated; Karabiner hot‑reloads `karabiner.json`.
 ### Machine‑level bits
 
 `karabiner_cli` has no command for `simple_modifications` / device settings, so
-`bin/set-machine-config.py` edits `~/.config/karabiner/karabiner.json` directly
-(backup first, Karabiner reloads):
+`bin/set-machine-config.py` edits `~/.config/karabiner/karabiner.json` directly (backup first, Karabiner reloads):
 
 ```sh
 python3 bin/set-machine-config.py          # right_command→right_option (AltGr) + iso layout + known Logitech devices
