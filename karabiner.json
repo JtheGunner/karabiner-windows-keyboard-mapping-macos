@@ -4296,7 +4296,7 @@
                         ]
                     },
                     {
-                        "description": "[winkeys] Left Option+0..9 => Ctrl+Shift+Option+Cmd+0..9 in IDEs (tool windows; keeps AltGr = right Option free to type | @ # |)",
+                        "description": "[winkeys] Alt (left_command on this keyboard)+0..9 => Ctrl+Shift+Option+Cmd+0..9 in IDEs (tool windows; keeps AltGr = right Option free to type | @ # |)",
                         "manipulators": [
                             {
                                 "type": "basic",
@@ -4320,7 +4320,7 @@
                                     "key_code": "1",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4361,7 +4361,7 @@
                                     "key_code": "2",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4402,7 +4402,7 @@
                                     "key_code": "3",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4443,7 +4443,7 @@
                                     "key_code": "4",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4484,7 +4484,7 @@
                                     "key_code": "5",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4525,7 +4525,7 @@
                                     "key_code": "6",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4566,7 +4566,7 @@
                                     "key_code": "7",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4607,7 +4607,7 @@
                                     "key_code": "8",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4648,7 +4648,7 @@
                                     "key_code": "9",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
@@ -4689,7 +4689,7 @@
                                     "key_code": "0",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_option"
+                                            "left_command"
                                         ],
                                         "optional": [
                                             "caps_lock"
