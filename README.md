@@ -102,3 +102,13 @@ Karabiner's own `automatic_backups/` is another safety net (git‑ignored here).
 ## Credits
 
 [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) by pqrs.org.
+
+## Contributing
+
+Issues and pull requests are welcome. Try changes with `./apply.sh --dry-run`
+first; after tweaking rules in the Karabiner GUI, run `./export.sh` so the PR
+contains the updated `karabiner.json`.
+
+## License
+
+[MIT](LICENSE)
