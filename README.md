@@ -34,9 +34,23 @@ Two things this config is careful about:
 | 25 | Terminals: `Ctrl+←/→` => `Option+←/→` word motion | **real terminals only** |
 | 35 | `Ctrl+left‑click` => `Cmd+left‑click` (discontiguous multi‑select) | all |
 | 40 | Terminals: `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N`, `Ctrl/Shift+Insert` | **real terminals only** |
+| 45 | IDEs: `Alt+0…9` (physical Alt = `left_command`) => `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr (right Option) stays untouched so `AltGr+1/2/3/7` type `\| @ # \|` | IDEs only |
 | 50 | `Alt+F4` => close window · `Ctrl+Space` => Spotlight | all |
 | 60 | Finder: `F2` => rename · `Enter` => open selected item | Finder |
 | 70 | Browser: `F5`/`Ctrl+F5` reload · `F12` DevTools · `Ctrl+H` history · `Ctrl`+keypad `-/+/0` zoom | browsers (runs before 10) |
+
+Rule 45 exists because macOS apps cannot tell left from right Option: an IDE
+shortcut on `Option+3` swallows the `#` that AltGr+3 (right Option) should type.
+So the IDE keymaps keep `Option+<digit>` free, and the physical Alt key, which
+arrives as `left_command` like in the Alt+F4 rule, is rewritten instead. The IDE keymaps must bind
+their tool windows to `Ctrl+Shift+Alt+Cmd+<digit>` and have no `Alt+<digit>`
+left; for the VS Code family,
+[intelli-key-port](https://github.com/JtheGunner/intelli-key-port) ports that
+from the JetBrains keymap.
+
+In the VS Code family, rule 20 rewrites `Ctrl+←/→` and `Home`/`End` before the
+editor sees them (e.g. in Antigravity IDE). Port with
+`intelli-key-port --layer karabiner-winkeys` so the editor bindings match.
 
 `karabiner.json` also carries a handful of personal rules that are **not** part
 of the winkeys set and live only in that file (Option+. emoji, Option+V

@@ -1,0 +1,420 @@
+{
+    "title": "Win-keys \u00b7 45 \u00b7 IDEs: Alt+digit opens tool windows, AltGr+digit types characters",
+    "rules": [
+        {
+            "description": "Alt (left_command on this keyboard)+0..9 => Ctrl+Shift+Option+Cmd+0..9 in IDEs (tool windows; keeps AltGr = right Option free to type | @ # |)",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "1",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "1",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "2",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "2",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "3",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "3",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "4",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "4",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "5",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "5",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "6",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "6",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "7",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "7",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "8",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "8",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "9",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "9",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "0",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "0",
+                            "modifiers": [
+                                "left_control",
+                                "left_shift",
+                                "left_option",
+                                "left_command"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
