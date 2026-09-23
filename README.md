@@ -110,4 +110,4 @@ contains the updated `karabiner.json`.
 
 ## License
 
-[MIT](LICENSE)
+MIT — see [LICENSE](LICENSE). © 2026 Jeffry Würmli.
