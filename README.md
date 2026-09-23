@@ -47,6 +47,10 @@ left; for the VS Code family,
 [intelli-key-port](https://github.com/JtheGunner/intelli-key-port) ports that
 from the JetBrains keymap.
 
+In the VS Code family, rule 20 rewrites `Ctrl+←/→` and `Home`/`End` before the
+editor sees them (e.g. in Antigravity IDE). Port with
+`intelli-key-port --layer karabiner-winkeys` so the editor bindings match.
+
 `karabiner.json` also carries a handful of personal rules that are **not** part
 of the winkeys set and live only in that file (Option+. emoji, Option+V
 clipboard history, screenshot, mouse side‑keys, format‑doc, Launchpad, …).
