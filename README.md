@@ -186,6 +186,7 @@ assets/complex_modifications/winkeys-*.json   source rule groups (importable in 
 karabiner.json                                full profile that apply.sh installs
 apply.sh · export.sh · setup.sh               install / sync scripts
 bin/set-machine-config.py                     machine-level settings
+tests/apply-test.sh                           tests for apply.sh (bash tests/apply-test.sh)
 ```
 
 > [!NOTE]
@@ -199,7 +200,8 @@ bin/set-machine-config.py                     machine-level settings
 ## ⏪ Rollback
 
 Every write by `apply.sh` or `set-machine-config.py` leaves a timestamped backup
-next to the live file:
+next to the live file. `apply.sh` leaves files that already match this repo
+alone, so a re-run without changes writes nothing and makes no backup:
 
 ```sh
 cp ~/.config/karabiner/karabiner-bkp-<timestamp>.json ~/.config/karabiner/karabiner.json
@@ -212,7 +214,7 @@ Karabiner's own `~/.config/karabiner/automatic_backups/` is a second safety net.
 ## 🤝 Contributing
 
 Issues and pull requests are welcome. Try changes with `./apply.sh --dry-run`
-first. After tweaking rules in the Karabiner GUI, run `./export.sh` and update
+first and run the tests with `bash tests/apply-test.sh`. After tweaking rules in the Karabiner GUI, run `./export.sh` and update
 the matching `winkeys-*.json` so both files stay in sync in your PR.
 
 ---
