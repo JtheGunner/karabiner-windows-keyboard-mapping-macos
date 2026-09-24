@@ -1,5 +1,5 @@
 {
-    "title": "Win-keys \u00b7 45 \u00b7 IDEs: Alt+digit opens tool windows, AltGr+digit types characters",
+    "title": "Win-keys \u00b7 45 \u00b7 IDEs: Alt+digit opens tool windows, AltGr+digit types characters, Alt+Insert",
     "rules": [
         {
             "description": "Alt (left_command on this keyboard)+0..9 => Ctrl+Shift+Option+Cmd+0..9 in IDEs (tool windows; keeps AltGr = right Option free to type | @ # |)",
@@ -410,6 +410,50 @@
                                 "left_shift",
                                 "left_option",
                                 "left_command"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "description": "Alt (left_command on this keyboard)+Insert => Option+Insert in IDEs (Generate / New element; +Shift = column selection)",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "conditions": [
+                        {
+                            "type": "frontmost_application_if",
+                            "bundle_identifiers": [
+                                "^com\\.microsoft\\.VSCode$",
+                                "^com\\.microsoft\\.VSCodeInsiders$",
+                                "^com\\.vscodium$",
+                                "^com\\.google\\.antigravity$",
+                                "^com\\.google\\.antigravity-ide$",
+                                "^com\\.exafunction\\.windsurf$",
+                                "^com\\.todesktop\\.230313mzl4w4u92$",
+                                "^com\\.jetbrains\\.",
+                                "^dev\\.zed\\.Zed$"
+                            ]
+                        }
+                    ],
+                    "from": {
+                        "key_code": "insert",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_command"
+                            ],
+                            "optional": [
+                                "caps_lock",
+                                "shift"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "insert",
+                            "modifiers": [
+                                "left_option"
                             ]
                         }
                     ]
