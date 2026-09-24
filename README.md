@@ -1,115 +1,230 @@
-# Windows keyboard mapping for macOS (Karabiner-Elements)
+<div align="center">
 
-Full **Windows / PC muscle memory** on a macOS box with a Swiss‑German ISO PC
-keyboard — `Ctrl+C/V/Z/Y`, `Ctrl+←/→` word jump, `Home/End`, `Ctrl+Backspace`,
-`Alt+F4`, `F2` rename, browser `F5/F12`, … — **while keeping real UNIX terminal
-behaviour** (`Ctrl+C` = SIGINT) and leaving IDEs' own keymaps untouched.
+# ⌨️ Windows Keyboard Mapping for macOS
 
-Companion pieces: the Swiss AltGr characters (`@ \ ~ [] {} €`) come from a
-[custom keyboard layout](https://github.com/JtheGunner/swiss-windows-keyboard-layout-macos),
-not Karabiner. Overview: [macos-base-config](https://github.com/JtheGunner/macos-base-config).
+**Windows / PC muscle memory on a Mac, without breaking the terminal.**
 
-## Design
+<code>🪟 PC keyboard (Swiss ISO)</code> &nbsp;→&nbsp; <code>🔄 Karabiner-Elements</code> &nbsp;→&nbsp; <code>🍎 macOS apps · terminals · IDEs</code>
 
-Two things this config is careful about:
+![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)
+![Platform](https://img.shields.io/badge/platform-macOS-0ea5e9?style=flat-square&logo=apple&logoColor=white)
+![Karabiner-Elements](https://img.shields.io/badge/Karabiner--Elements-15%2B-8b5cf6?style=flat-square)
+![Python](https://img.shields.io/badge/python-3-3776ab?style=flat-square&logo=python&logoColor=white)
+![PRs welcome](https://img.shields.io/badge/PRs-welcome-f59e0b?style=flat-square)
 
-1. **Terminals are not IDEs.** VS Code / Antigravity / JetBrains / Cursor /
-   Zed keep their *native* keymaps (they run Windows‑style keymaps themselves).
-   The PC‑Ctrl swap and the cursor/word rules are `frontmost_application_unless`
-   the IDE bundle ids; the *terminal‑only* rules are `frontmost_application_if`
-   real terminal emulators (Terminal, iTerm2, Ghostty, Warp, Tabby, WezTerm,
-   Kitty, Alacritty, Hyper) — **the IDE bundle ids are deliberately not in that
-   list**, so an IDE's editor never gets terminal rewrites.
-2. **`Ctrl+C` stays SIGINT in terminals.** The clipboard verbs are remapped
-   only outside terminals; inside, `Ctrl+Shift+C/V` are copy/paste.
+</div>
 
-### Rule groups (`assets/complex_modifications/winkeys-*.json`)
+---
 
-| #  | group                                                                                                                                                                | scope                                                   |
-|----|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------|
-| 05 | `Shift+Enter` => real newline (Claude Code, REPLs, Electron editors)                                                                                                 | terminals + a few Electron apps                         |
-| 10 | PC‑style Ctrl: `left_control+<key>` => `left_command+<key>`                                                                                                          | all GUI apps **except** terminals, RDP/VM clients, IDEs |
-| 15 | `Ctrl+Y` (QWERTZ physical Y) => Redo                                                                                                                                 | GUI apps (runs before 10)                               |
-| 20 | `Ctrl+Home/End`, `Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete                                                                               | all GUI apps **except** terminals + IDEs                |
-| 25 | Terminals: `Ctrl+←/→` => `Option+←/→` word motion                                                                                                                    | **real terminals only**                                 |
-| 35 | `Ctrl+left‑click` => `Cmd+left‑click` (discontiguous multi‑select)                                                                                                   | all                                                     |
-| 40 | Terminals: `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N`, `Ctrl/Shift+Insert`                                                                                                     | **real terminals only**                                 |
-| 45 | IDEs: `Alt+0…9` (physical Alt = `left_command`) => `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr (right Option) stays untouched so `AltGr+1/2/3/7` type `\| @ # \|` | IDEs only                                               |
-| 50 | `Alt+F4` => close window · `Ctrl+Space` => Spotlight                                                                                                                 | all                                                     |
-| 60 | Finder: `F2` => rename · `Enter` => open selected item                                                                                                               | Finder                                                  |
-| 70 | Browser: `F5`/`Ctrl+F5` reload · `F12` DevTools · `Ctrl+H` history · `Ctrl`+keypad `-/+/0` zoom                                                                      | browsers (runs before 10)                               |
+## 🎯 What it is
 
-Rule 45 exists because macOS apps cannot tell left from right Option: an IDE
-shortcut on `Option+3` swallows the `#` that AltGr+3 (right Option) should type.
-So the IDE keymaps keep `Option+<digit>` free, and the physical Alt key, which
-arrives as `left_command` like in the Alt+F4 rule, is rewritten instead. The IDE keymaps must bind
-their tool windows to `Ctrl+Shift+Alt+Cmd+<digit>` and have no `Alt+<digit>`
-left; for the VS Code family,
-[intelli-key-port](https://github.com/JtheGunner/intelli-key-port) ports that
-from the JetBrains keymap.
+A [Karabiner-Elements](https://karabiner-elements.pqrs.org/) configuration for
+a Mac driven by a **Swiss-German ISO PC keyboard**. It gives you the Windows
+shortcuts your fingers already know:
 
-In the VS Code family, rule 20 rewrites `Ctrl+←/→` and `Home`/`End` before the
-editor sees them (e.g. in Antigravity IDE). Port with
-`intelli-key-port --layer karabiner-winkeys` so the editor bindings match.
+- `Ctrl+C/V/X/Z/Y`, `Ctrl+S`, `Ctrl+F`, … in every GUI app
+- `Home` / `End`, `Ctrl+Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete`
+- `Alt+F4`, `Ctrl+Space` (Spotlight), `F2` rename and `Enter` open in Finder
+- `F5`, `F12`, `Ctrl+H` and `Ctrl`+keypad zoom in browsers
 
-`karabiner.json` also carries a handful of personal rules that are **not** part
-of the winkeys set and live only in that file (Option+. emoji, Option+V
-clipboard history, screenshot, mouse side‑keys, format‑doc, Launchpad, …).
+…while **terminals keep real UNIX behaviour** (`Ctrl+C` = SIGINT) and **IDEs
+keep their own keymaps**.
 
-The `winkeys-*.json` files are the **source** rule library (importable in the
-Karabiner GUI). `karabiner.json` is the **assembled** profile that
-`./apply.sh` installs.
+| Piece | Where it lives |
+|-------|----------------|
+| Windows shortcuts (this repo) | Karabiner-Elements |
+| Swiss AltGr characters (`@ # \| \ ~ [] {} €`) | [swiss-windows-keyboard-layout-macos](https://github.com/JtheGunner/swiss-windows-keyboard-layout-macos) (a keyboard layout, not Karabiner) |
+| IDE keymaps for the VS Code family | [intelli-key-port](https://github.com/JtheGunner/intelli-key-port) |
+| Whole-Mac bootstrap that wires it all together | [macos-base-config](https://github.com/JtheGunner/macos-base-config) |
 
-## Install / apply
+---
 
-```sh
-./setup.sh        # fresh Mac: brew‑install Karabiner + apply + machine config + permission steps
-./apply.sh        # already have Karabiner: back up the live config, copy this repo's in
-./apply.sh --dry-run
-./export.sh       # pull the live config back into the repo after GUI tweaks
+## 🧭 Design
+
+Every key press is routed by the app in front:
+
+```text
+                 ┌──────────────────────────────────────────────┐
+  key press ───▶ │ Karabiner: which app is frontmost?           │
+                 └──────────────────────────────────────────────┘
+                   │                 │                  │
+             terminal              IDE            any other GUI app
+                   │                 │                  │
+     Ctrl stays Ctrl (SIGINT)  native keymap      Ctrl → Cmd (PC-style)
+     Ctrl+Shift+C/V = copy/paste  + Alt+digit →    Home/End, word jump,
+     Ctrl+←/→ = word motion       tool windows     Alt+F4, F2, F5, …
 ```
 
-`setup.sh` cannot grant the three macOS permissions Karabiner needs (Driver
-Extension, Input Monitoring, Accessibility) — it opens the panes and prints the
-steps. Everything else is automated; Karabiner hot‑reloads `karabiner.json`.
+1. **Terminals are not IDEs.** Terminal-only rules match real terminal
+   emulators — Terminal, iTerm2, Ghostty, Warp, Tabby, WezTerm, Kitty,
+   Alacritty, Hyper. IDE bundle ids are **deliberately not** in that list, so an
+   IDE's editor never gets terminal rewrites.
+2. **IDEs keep their native keymaps.** VS Code (+ Insiders), VSCodium, Cursor,
+   Windsurf, Zed, Antigravity and all JetBrains IDEs run Windows-style keymaps
+   themselves, so the PC-Ctrl swap and the cursor rules skip them.
+3. **`Ctrl+C` stays SIGINT in terminals.** Clipboard verbs are remapped only
+   outside terminals; inside, `Ctrl+Shift+C/V` (or `Ctrl/Shift+Insert`) copy
+   and paste.
+4. **Remote and VM clients get raw keys.** Microsoft Remote Desktop, Parallels,
+   VMware, VirtualBox, Citrix, TeamViewer, Parsec, … are excluded from the
+   PC-Ctrl swap, the cursor rules and the system verbs, so the Windows guest
+   receives the keys unchanged.
 
-### Machine‑level bits
+---
 
-`karabiner_cli` has no command for `simple_modifications` / device settings, so
-`bin/set-machine-config.py` edits `~/.config/karabiner/karabiner.json` directly (backup first, Karabiner reloads):
+## 🗂️ Rule groups
+
+Source files: `assets/complex_modifications/winkeys-<nn>-*.json`. In
+`karabiner.json` every rule of this set is prefixed with `[winkeys]`.
+
+|    | #  | Rule group                                                                                                             | Active in                                                        |
+|:--:|----|------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| ↩️ | 05 | `Shift+Enter` → real newline (Claude Code, zsh, REPLs)                                                                 | terminals + Windsurf, VSCodium, Code-OSS, Zed                    |
+| 🔁 | 10 | PC-style Ctrl: `left_control+<key>` → `left_command+<key>`                                                             | GUI apps **except** terminals, IDEs, remote/VM clients           |
+| ↪️ | 15 | `Ctrl+Y` (physical QWERTZ Y) → Redo                                                                                    | same scope as 10                                                 |
+| 🔤 | 20 | `Home/End`, `Ctrl+Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete                                 | GUI apps **except** terminals, IDEs, remote/VM clients ¹         |
+| 💻 | 25 | `Ctrl+←/→` → `Option+←/→` word motion                                                                                  | **terminals only**                                               |
+| 🖱️ | 35 | `Ctrl+left-click` → `Cmd+left-click` (discontiguous multi-select)                                                      | everywhere                                                       |
+| 📋 | 40 | `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N`, `Ctrl/Shift+Insert`                                                                  | **terminals only**                                               |
+| 🧰 | 45 | `Alt+0…9` → `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr stays free so `AltGr+1/2/3/7` type `\| @ # \|`             | **IDEs only**                                                    |
+| ❌ | 50 | `Alt+F4` → close window · `Ctrl+Space` → Spotlight                                                                     | everywhere except remote/VM clients                              |
+| 📁 | 60 | `F2` → rename · `Enter` → open selected item                                                                           | Finder                                                           |
+| 🌐 | 70 | `F5` / `Ctrl+F5` reload · `F12` DevTools · `Ctrl+H` history · `Ctrl`+keypad `-/+/0` zoom                               | Safari, Chrome, Brave, Edge, Firefox, Arc, Dia                   |
+
+¹ Exception: **Antigravity IDE** is *not* excluded from `Home/End`,
+`Ctrl+Home/End` and `Ctrl+←/→`, so these keys also work in its agent-chat input.
+Port your editor keymap with `intelli-key-port --layer karabiner-winkeys` so
+the editor side matches the rewritten keys.
+
+> [!IMPORTANT]
+> Karabiner evaluates rules top-down and the first match wins. The group number
+> is an id, not the position: in `karabiner.json`, groups **15** and **70** sit
+> **before** group 10, otherwise the generic Ctrl→Cmd swap would swallow
+> `Ctrl+Y`, `Ctrl+H` and `Ctrl+F5`.
+
+### 🧰 Why rule 45 exists
+
+macOS apps cannot tell left from right Option. An IDE shortcut on `Option+3`
+therefore swallows the `#` that `AltGr+3` (right Option) should type. The fix:
+
+- the physical **Alt** key, which arrives as `left_command` on this keyboard,
+  is rewritten to `Ctrl+Shift+Alt+Cmd+<digit>` inside IDEs;
+- the IDE keymaps bind their tool windows to `Ctrl+Shift+Alt+Cmd+<digit>` and
+  keep **no** `Alt+<digit>` binding — for the VS Code family,
+  [intelli-key-port](https://github.com/JtheGunner/intelli-key-port) ports that
+  from the JetBrains keymap.
+
+### ✨ Personal extras
+
+`karabiner.json` also carries a few rules that are **not** part of the
+`winkeys` set and have no source file:
+
+| Shortcut              | Action                                  |
+|-----------------------|-----------------------------------------|
+| `Option+.`            | emoji picker                            |
+| `Option+V`            | macOS clipboard history                 |
+| `Option+Shift+S`      | area screenshot to the clipboard        |
+| mouse side keys       | back / forward                          |
+| `Cmd+Option+L`        | format document in IDEs                 |
+| `Option+L`            | lock screen                             |
+| `Ctrl+Esc`            | Launchpad                               |
+| `Ctrl+Cmd+Delete`     | Activity Monitor                        |
+| `Option+E`            | open Finder                             |
+
+---
+
+## 📋 Requirements
+
+- macOS with [Homebrew](https://brew.sh/) (or Karabiner-Elements installed manually)
+- `python3` (ships with the Xcode Command Line Tools)
+- A PC keyboard with an ISO layout — the machine config below assumes a Swiss-German one
+
+---
+
+## 🚀 Install
+
+|    | Command                | What it does                                                                                        |
+|:--:|------------------------|-----------------------------------------------------------------------------------------------------|
+| 🆕 | `./setup.sh`           | Fresh Mac: installs Karabiner-Elements via Homebrew, runs `apply.sh` and `set-machine-config.py`, opens the permission panes |
+| 📥 | `./apply.sh`           | Backs up the live config, copies `karabiner.json` and the `winkeys-*.json` files into `~/.config/karabiner/` |
+| 👀 | `./apply.sh --dry-run` | Shows what `apply.sh` would do, changes nothing                                                    |
+| 📤 | `./export.sh`          | Pulls the live config back into the repo after GUI tweaks and shows the `git diff --stat`          |
+
+Karabiner hot-reloads `karabiner.json` — no restart needed.
+
+> [!WARNING]
+> No script can grant the three macOS permissions Karabiner needs. After
+> `setup.sh`, enable them by hand in **System Settings**:
+> **Driver Extensions** → `Karabiner-DriverKit-VirtualHIDDevice`,
+> **Input Monitoring** → `karabiner_grabber`,
+> **Accessibility** → `Karabiner-Elements`.
+
+### 🔧 Machine-level settings
+
+`karabiner_cli` cannot set simple modifications or device settings, so
+`bin/set-machine-config.py` edits the selected profile in
+`~/.config/karabiner/karabiner.json` directly (backup first):
 
 ```sh
-python3 bin/set-machine-config.py          # right_command→right_option (AltGr) + iso layout + known Logitech devices
-python3 bin/set-machine-config.py --show   # print current values only
+python3 bin/set-machine-config.py          # all of the below
+python3 bin/set-machine-config.py --show   # print current values, change nothing
 python3 bin/set-machine-config.py --iso    # one at a time: --simple-mods / --iso / --devices
 ```
 
-Device entries are keyed by USB vendor/product id (Logitech, `vendor_id 1133`);
-they only match that exact hardware and are harmless otherwise. Adjust
-`DEVICES` in the script for your gear.
+| Flag            | Sets                                                                  |
+|-----------------|-----------------------------------------------------------------------|
+| `--simple-mods` | `right_command` → `right_option`, so the right Alt key acts as AltGr  |
+| `--iso`         | virtual keyboard type `iso`                                           |
+| `--devices`     | known Logitech keyboard/mice (vendor id `1133`); edit `DEVICES` in the script for your hardware — entries only match that exact device and are harmless otherwise |
 
-## Rollback
+---
 
-Every write makes a timestamped backup next to the live file. `apply.sh`
-leaves files that already match this repo alone, so a re-run without changes
-writes nothing and makes no backup.
+## 📁 Repository layout
+
+```
+assets/complex_modifications/winkeys-*.json   source rule groups (importable in the Karabiner GUI)
+karabiner.json                                full profile that apply.sh installs
+apply.sh · export.sh · setup.sh               install / sync scripts
+bin/set-machine-config.py                     machine-level settings
+tests/apply-test.sh                           tests for apply.sh (bash tests/apply-test.sh)
+```
+
+> [!NOTE]
+> There is no build step. `karabiner.json` contains the `winkeys` rules verbatim
+> (prefixed `[winkeys]`), so a rule change has to land in **both** its
+> `winkeys-*.json` file and `karabiner.json`. `export.sh` only syncs
+> `karabiner.json` — mirror GUI edits into the matching source file by hand.
+
+---
+
+## ⏪ Rollback
+
+Every write by `apply.sh` or `set-machine-config.py` leaves a timestamped backup
+next to the live file. `apply.sh` leaves files that already match this repo
+alone, so a re-run without changes writes nothing and makes no backup:
 
 ```sh
 cp ~/.config/karabiner/karabiner-bkp-<timestamp>.json ~/.config/karabiner/karabiner.json
 ```
 
-Karabiner's own `automatic_backups/` is another safety net (git‑ignored here).
+Karabiner's own `~/.config/karabiner/automatic_backups/` is a second safety net.
 
-## Credits
+---
 
-[Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) by pqrs.org.
-
-## Contributing
+## 🤝 Contributing
 
 Issues and pull requests are welcome. Try changes with `./apply.sh --dry-run`
-first and run the tests with `bash tests/apply-test.sh`; after tweaking rules in the Karabiner GUI, run `./export.sh` so the PR
-contains the updated `karabiner.json`.
+first and run the tests with `bash tests/apply-test.sh`. After tweaking rules in the Karabiner GUI, run `./export.sh` and update
+the matching `winkeys-*.json` so both files stay in sync in your PR.
 
-## License
+---
+
+## 📄 License
 
 MIT — see [LICENSE](LICENSE). © 2026 Jeffry Würmli.
+
+Built on [Karabiner-Elements](https://github.com/pqrs-org/Karabiner-Elements) by pqrs.org.
+
+---
+
+<div align="center"><sub>Made for fingers that learned on Windows and moved to a Mac. ⌨️</sub></div>
