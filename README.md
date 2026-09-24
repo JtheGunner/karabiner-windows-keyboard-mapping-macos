@@ -90,7 +90,9 @@ they only match that exact hardware and are harmless otherwise. Adjust
 
 ## Rollback
 
-Every write makes a timestamped backup next to the live file:
+Every write makes a timestamped backup next to the live file. `apply.sh`
+leaves files that already match this repo alone, so a re-run without changes
+writes nothing and makes no backup.
 
 ```sh
 cp ~/.config/karabiner/karabiner-bkp-<timestamp>.json ~/.config/karabiner/karabiner.json
@@ -105,7 +107,7 @@ Karabiner's own `automatic_backups/` is another safety net (git‑ignored here).
 ## Contributing
 
 Issues and pull requests are welcome. Try changes with `./apply.sh --dry-run`
-first; after tweaking rules in the Karabiner GUI, run `./export.sh` so the PR
+first and run the tests with `bash tests/apply-test.sh`; after tweaking rules in the Karabiner GUI, run `./export.sh` so the PR
 contains the updated `karabiner.json`.
 
 ## License
