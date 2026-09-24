@@ -13,7 +13,8 @@ What it sets on the *selected* profile:
   --iso           virtual_hid_keyboard.keyboard_type_v2 = "iso"
   --devices       devices[]             = the known Logitech keyboard/mice
                   (vendor_id 1133; only matches that exact hardware - harmless
-                  otherwise). Edit DEVICES below for your gear.
+                  otherwise), incl. the MX Keys Windows-mode Alt/Win swap.
+                  Edit DEVICES below for your gear.
 
     python3 bin/set-machine-config.py            # all of the above
     python3 bin/set-machine-config.py --iso      # just one
@@ -38,10 +39,18 @@ SIMPLE_MODS = [
 KEYBOARD_TYPE = "iso"  # Swiss/German ISO physical layout
 
 # vendor_id 1133 = Logitech. `ignore: false` = Karabiner processes the device.
+# The MX Keys (45915) runs in its Windows mode, the only mode that sends Insert.
+# There Alt arrives as left_option and Win as left_command; the swap restores
+# the macOS-mode codes (Alt = left_command, Win = left_option) all rules expect.
+MX_KEYS_WINDOWS_MODE_SWAP = [
+    {"from": {"key_code": "left_option"}, "to": [{"key_code": "left_command"}]},
+    {"from": {"key_code": "left_command"}, "to": [{"key_code": "left_option"}]},
+]
 DEVICES = [
     {"identifiers": {"is_keyboard": True, "is_pointing_device": True,
                      "product_id": 45915, "vendor_id": 1133},
-     "ignore": False, "treat_as_built_in_keyboard": True},
+     "ignore": False, "treat_as_built_in_keyboard": True,
+     "simple_modifications": MX_KEYS_WINDOWS_MODE_SWAP},
     {"identifiers": {"is_pointing_device": True, "product_id": 45108, "vendor_id": 1133},
      "ignore": False},
     {"identifiers": {"is_pointing_device": True, "product_id": 50504, "vendor_id": 1133},

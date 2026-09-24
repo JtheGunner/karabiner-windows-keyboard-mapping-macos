@@ -63,8 +63,8 @@ Every key press is routed by the app in front:
    Windsurf, Zed, Antigravity and all JetBrains IDEs run Windows-style keymaps
    themselves, so the PC-Ctrl swap and the cursor rules skip them.
 3. **`Ctrl+C` stays SIGINT in terminals.** Clipboard verbs are remapped only
-   outside terminals; inside, `Ctrl+Shift+C/V` (or `Ctrl/Shift+Insert`) copy
-   and paste.
+   outside terminals; inside, `Ctrl+Shift+C/V` copy and paste.
+   `Ctrl/Shift+Insert` copy and paste everywhere.
 4. **Remote and VM clients get raw keys.** Microsoft Remote Desktop, Parallels,
    VMware, VirtualBox, Citrix, TeamViewer, Parsec, … are excluded from the
    PC-Ctrl swap, the cursor rules and the system verbs, so the Windows guest
@@ -85,14 +85,16 @@ Source files: `assets/complex_modifications/winkeys-<nn>-*.json`. In
 | 🔤 | 20 | `Home/End`, `Ctrl+Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete                                 | GUI apps **except** terminals, IDEs, remote/VM clients ¹         |
 | 💻 | 25 | `Ctrl+←/→` → `Option+←/→` word motion                                                                                  | **terminals only**                                               |
 | 🖱️ | 35 | `Ctrl+left-click` → `Cmd+left-click` (discontiguous multi-select)                                                      | everywhere                                                       |
-| 📋 | 40 | `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N`, `Ctrl/Shift+Insert`                                                                  | **terminals only**                                               |
-| 🧰 | 45 | `Alt+0…9` → `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr stays free so `AltGr+1/2/3/7` type `\| @ # \|`             | **IDEs only**                                                    |
+| 📋 | 40 | `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N` · `Ctrl/Shift+Insert` → copy / paste                                                  | **terminals only** · Insert: everywhere except IDEs, remote/VM ² |
+| 🧰 | 45 | `Alt+0…9` → `Ctrl+Shift+Alt+Cmd+0…9` (tool windows); AltGr stays free so `AltGr+1/2/3/7` type `\| @ # \|` · `Alt+Insert` → `Option+Insert` | **IDEs only**                                                    |
 | ❌ | 50 | `Alt+F4` → close window · `Ctrl+Space` → Spotlight                                                                     | everywhere except remote/VM clients                              |
 | 📁 | 60 | `F2` → rename · `Enter` → open selected item                                                                           | Finder                                                           |
 | 🌐 | 70 | `F5` / `Ctrl+F5` reload · `F12` DevTools · `Ctrl+H` history · `Ctrl`+keypad `-/+/0` zoom                               | Safari, Chrome, Brave, Edge, Firefox, Arc, Dia                   |
 
 ¹ Exception: **Antigravity IDE** is *not* excluded from `Home/End`,
 `Ctrl+Home/End` and `Ctrl+←/→`, so these keys also work in its agent-chat input.
+² IDEs bind `Ctrl/Shift+Insert` in their own keymaps (JetBrains *Default for
+XWin*, VS Code keybindings), so rule 40 leaves them alone there.
 Port your editor keymap with `intelli-key-port --layer karabiner-winkeys` so
 the editor side matches the rewritten keys.
 
@@ -107,7 +109,8 @@ the editor side matches the rewritten keys.
 macOS apps cannot tell left from right Option. An IDE shortcut on `Option+3`
 therefore swallows the `#` that `AltGr+3` (right Option) should type. The fix:
 
-- the physical **Alt** key, which arrives as `left_command` on this keyboard,
+- the physical **Alt** key, which arrives as `left_command` on this keyboard
+  (see [MX Keys: Windows mode](#️-logitech-mx-keys-windows-mode)),
   is rewritten to `Ctrl+Shift+Alt+Cmd+<digit>` inside IDEs;
 - the IDE keymaps bind their tool windows to `Ctrl+Shift+Alt+Cmd+<digit>` and
   keep **no** `Alt+<digit>` binding — for the VS Code family,
@@ -175,7 +178,20 @@ python3 bin/set-machine-config.py --iso    # one at a time: --simple-mods / --is
 |-----------------|-----------------------------------------------------------------------|
 | `--simple-mods` | `right_command` → `right_option`, so the right Alt key acts as AltGr  |
 | `--iso`         | virtual keyboard type `iso`                                           |
-| `--devices`     | known Logitech keyboard/mice (vendor id `1133`); edit `DEVICES` in the script for your hardware — entries only match that exact device and are harmless otherwise |
+| `--devices`     | known Logitech keyboard/mice (vendor id `1133`), incl. the MX Keys Alt/Win swap below; edit `DEVICES` in the script for your hardware — entries only match that exact device and are harmless otherwise |
+
+### ⌨️ Logitech MX Keys: Windows mode
+
+The MX Keys sends **Insert** only in its **Windows** mode (`Fn+P`); in macOS
+mode (`Fn+O`) the key sends nothing at all. Windows mode, however, swaps Alt
+and Win: Alt arrives as `left_option`, Win as `left_command`. The MX Keys
+device entry swaps them back, so every rule still sees Alt as `left_command`
+and Win as `left_option`.
+
+> [!IMPORTANT]
+> Keep the keyboard in Windows mode: in Logi Options+, turn **off** *Always
+> keep keyboard on Mac layout* and set the platform to **Windows**. In macOS
+> mode the device swap turns Alt and Win the wrong way round — `Fn+P` fixes it.
 
 ---
 
@@ -187,6 +203,7 @@ karabiner.json                                full profile that apply.sh install
 apply.sh · export.sh · setup.sh               install / sync scripts
 bin/set-machine-config.py                     machine-level settings
 tests/apply-test.sh                           tests for apply.sh (bash tests/apply-test.sh)
+tests/config-test.sh                          tests for karabiner.json, fragments, device settings
 ```
 
 > [!NOTE]
@@ -214,7 +231,7 @@ Karabiner's own `~/.config/karabiner/automatic_backups/` is a second safety net.
 ## 🤝 Contributing
 
 Issues and pull requests are welcome. Try changes with `./apply.sh --dry-run`
-first and run the tests with `bash tests/apply-test.sh`. After tweaking rules in the Karabiner GUI, run `./export.sh` and update
+first and run the tests with `bash tests/apply-test.sh && bash tests/config-test.sh`. After tweaking rules in the Karabiner GUI, run `./export.sh` and update
 the matching `winkeys-*.json` so both files stay in sync in your PR.
 
 ---

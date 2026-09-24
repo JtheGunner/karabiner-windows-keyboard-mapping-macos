@@ -4207,27 +4207,47 @@
                         ]
                     },
                     {
-                        "description": "[winkeys] Ctrl+Insert / Shift+Insert => copy / paste  (terminals only)",
+                        "description": "[winkeys] Ctrl+Insert / Shift+Insert => copy / paste  (all apps; IDEs keep their own Insert bindings; excluded in RDP & VM clients)",
                         "manipulators": [
                             {
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "frontmost_application_if",
+                                        "type": "frontmost_application_unless",
                                         "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.mitchellh\\.ghostty$",
-                                            "^dev\\.warp\\.Warp-Stable$",
-                                            "^dev\\.warp\\.Warp$",
-                                            "^org\\.tabby$",
-                                            "^com\\.github\\.wez\\.wezterm$",
-                                            "^net\\.kovidgoyal\\.kitty$",
-                                            "^io\\.kitty$",
-                                            "^org\\.alacritty$",
-                                            "^io\\.alacritty$",
-                                            "^co\\.zeit\\.hyper$",
-                                            "^co\\.zeit\\.hyperterm$"
+                                            "^com\\.microsoft\\.rdc$",
+                                            "^com\\.microsoft\\.rdc\\.mac$",
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.rdc\\.osx\\.beta$",
+                                            "^net\\.sf\\.cord$",
+                                            "^com\\.thinomenon\\.RemoteDesktopConnection$",
+                                            "^com\\.itap-mobile\\.qmote$",
+                                            "^com\\.nulana\\.remotixmac$",
+                                            "^com\\.p5sys\\.jump\\.mac\\.viewer$",
+                                            "^com\\.p5sys\\.jump\\.mac\\.viewer\\.web$",
+                                            "^com\\.teamviewer\\.TeamViewer$",
+                                            "^com\\.vmware\\.horizon$",
+                                            "^com\\.2X\\.Client\\.Mac$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^com\\.vmware\\.view$",
+                                            "^com\\.parallels\\.desktop$",
+                                            "^com\\.parallels\\.vm$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.vmware\\.proxyApp\\.",
+                                            "^com\\.parallels\\.winapp\\.",
+                                            "^tv\\.parsec\\.www$",
+                                            "^org\\.macports\\.X11$",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.microsoft\\.VSCodeInsiders$",
+                                            "^com\\.vscodium$",
+                                            "^com\\.google\\.antigravity$",
+                                            "^com\\.google\\.antigravity-ide$",
+                                            "^com\\.exafunction\\.windsurf$",
+                                            "^com\\.todesktop\\.230313mzl4w4u92$",
+                                            "^com\\.jetbrains\\.",
+                                            "^dev\\.zed\\.Zed$"
                                         ]
                                     }
                                 ],
@@ -4255,21 +4275,41 @@
                                 "type": "basic",
                                 "conditions": [
                                     {
-                                        "type": "frontmost_application_if",
+                                        "type": "frontmost_application_unless",
                                         "bundle_identifiers": [
-                                            "^com\\.apple\\.Terminal$",
-                                            "^com\\.googlecode\\.iterm2$",
-                                            "^com\\.mitchellh\\.ghostty$",
-                                            "^dev\\.warp\\.Warp-Stable$",
-                                            "^dev\\.warp\\.Warp$",
-                                            "^org\\.tabby$",
-                                            "^com\\.github\\.wez\\.wezterm$",
-                                            "^net\\.kovidgoyal\\.kitty$",
-                                            "^io\\.kitty$",
-                                            "^org\\.alacritty$",
-                                            "^io\\.alacritty$",
-                                            "^co\\.zeit\\.hyper$",
-                                            "^co\\.zeit\\.hyperterm$"
+                                            "^com\\.microsoft\\.rdc$",
+                                            "^com\\.microsoft\\.rdc\\.mac$",
+                                            "^com\\.microsoft\\.rdc\\.macos$",
+                                            "^com\\.microsoft\\.rdc\\.osx\\.beta$",
+                                            "^net\\.sf\\.cord$",
+                                            "^com\\.thinomenon\\.RemoteDesktopConnection$",
+                                            "^com\\.itap-mobile\\.qmote$",
+                                            "^com\\.nulana\\.remotixmac$",
+                                            "^com\\.p5sys\\.jump\\.mac\\.viewer$",
+                                            "^com\\.p5sys\\.jump\\.mac\\.viewer\\.web$",
+                                            "^com\\.teamviewer\\.TeamViewer$",
+                                            "^com\\.vmware\\.horizon$",
+                                            "^com\\.2X\\.Client\\.Mac$",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^com\\.vmware\\.view$",
+                                            "^com\\.parallels\\.desktop$",
+                                            "^com\\.parallels\\.vm$",
+                                            "^com\\.parallels\\.desktop\\.console$",
+                                            "^org\\.virtualbox\\.app\\.VirtualBoxVM$",
+                                            "^com\\.citrix\\.XenAppViewer$",
+                                            "^com\\.vmware\\.proxyApp\\.",
+                                            "^com\\.parallels\\.winapp\\.",
+                                            "^tv\\.parsec\\.www$",
+                                            "^org\\.macports\\.X11$",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.microsoft\\.VSCodeInsiders$",
+                                            "^com\\.vscodium$",
+                                            "^com\\.google\\.antigravity$",
+                                            "^com\\.google\\.antigravity-ide$",
+                                            "^com\\.exafunction\\.windsurf$",
+                                            "^com\\.todesktop\\.230313mzl4w4u92$",
+                                            "^com\\.jetbrains\\.",
+                                            "^dev\\.zed\\.Zed$"
                                         ]
                                     }
                                 ],
@@ -4704,6 +4744,50 @@
                                             "left_shift",
                                             "left_option",
                                             "left_command"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[winkeys] Alt (left_command on this keyboard)+Insert => Option+Insert in IDEs (Generate / New element; +Shift = column selection)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^com\\.microsoft\\.VSCodeInsiders$",
+                                            "^com\\.vscodium$",
+                                            "^com\\.google\\.antigravity$",
+                                            "^com\\.google\\.antigravity-ide$",
+                                            "^com\\.exafunction\\.windsurf$",
+                                            "^com\\.todesktop\\.230313mzl4w4u92$",
+                                            "^com\\.jetbrains\\.",
+                                            "^dev\\.zed\\.Zed$"
+                                        ]
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "insert",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command"
+                                        ],
+                                        "optional": [
+                                            "caps_lock",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "insert",
+                                        "modifiers": [
+                                            "left_option"
                                         ]
                                     }
                                 ]
@@ -5280,7 +5364,29 @@
                         "vendor_id": 1133
                     },
                     "ignore": false,
-                    "treat_as_built_in_keyboard": true
+                    "treat_as_built_in_keyboard": true,
+                    "simple_modifications": [
+                        {
+                            "from": {
+                                "key_code": "left_option"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_command"
+                                }
+                            ]
+                        },
+                        {
+                            "from": {
+                                "key_code": "left_command"
+                            },
+                            "to": [
+                                {
+                                    "key_code": "left_option"
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "identifiers": {
