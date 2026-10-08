@@ -125,12 +125,12 @@ therefore swallows the `#` that `AltGr+3` (right Option) should type. The fix:
 | Shortcut              | Action                                  |
 |-----------------------|-----------------------------------------|
 | `Option+.`            | emoji picker                            |
-| `Option+V`            | macOS clipboard history                 |
+| `Option+V`            | macOS clipboard history (disabled in `karabiner.json`) |
 | `Option+Shift+S`      | area screenshot to the clipboard        |
 | mouse side keys       | back / forward                          |
 | `Cmd+Option+L`        | format document in IDEs                 |
 | `Option+L`            | lock screen                             |
-| `Ctrl+Esc`            | Launchpad                               |
+| `Ctrl+Esc`            | Launchpad (disabled in `karabiner.json`) |
 | `Ctrl+Cmd+Delete`     | Activity Monitor                        |
 | `Option+E`            | open Finder                             |
 
