@@ -12,6 +12,7 @@ assert_eq() { [ "$1" = "$2" ] || fail "expected [$2], got [$1]"; }
 
 MX_KEYS=45915
 INSERT_RULE="Ctrl+Insert / Shift+Insert => copy / paste  (all apps; IDEs keep their own Insert bindings; excluded in RDP & VM clients)"
+CHAT_RULE="Antigravity agent chat: Ctrl+A => Cmd+A, Ctrl+C => Ctrl+Insert, Ctrl+Z => Cmd+Z, Ctrl+Y => Cmd+Shift+Z (the chat swallows or misroutes these; the IDE keymap sends them on as ^A / ^C / ^Z / ^Y in the terminal)"
 ALT_INSERT_RULE="Alt (left_command on this keyboard)+Insert => Option+Insert in IDEs (Generate / New element; +Shift = column selection)"
 ALT_DIGIT_RULE="Alt (left_command on this keyboard)+0..9 => Ctrl+Shift+Option+Cmd+0..9 in IDEs (tool windows; keeps AltGr = right Option free to type | @ # |)"
 
@@ -77,6 +78,12 @@ it "Ctrl/Shift+Insert skip IDEs and VM clients but not terminals"
 assert_eq "$(query "scope('$INSERT_RULE', r'^com\.jetbrains\.')")" "[('frontmost_application_unless', True), ('frontmost_application_unless', True)]"
 assert_eq "$(query "scope('$INSERT_RULE', r'^com\.parallels\.desktop$')")" "[('frontmost_application_unless', True), ('frontmost_application_unless', True)]"
 assert_eq "$(query "scope('$INSERT_RULE', r'^com\.apple\.Terminal$')")" "[('frontmost_application_unless', False), ('frontmost_application_unless', False)]"
+
+it "Ctrl+A / C / Z / Y become Cmd/Ctrl+Insert equivalents in both Antigravity apps only"
+assert_eq "$(query "mappings('$CHAT_RULE')")" "[({'key_code': 'a', 'modifiers': {'mandatory': ['left_control'], 'optional': ['caps_lock']}}, [{'key_code': 'a', 'modifiers': ['left_command']}]), ({'key_code': 'c', 'modifiers': {'mandatory': ['left_control'], 'optional': ['caps_lock']}}, [{'key_code': 'insert', 'modifiers': ['left_control']}]), ({'key_code': 'y', 'modifiers': {'mandatory': ['left_control'], 'optional': ['caps_lock']}}, [{'key_code': 'y', 'modifiers': ['left_command']}]), ({'key_code': 'z', 'modifiers': {'mandatory': ['left_control'], 'optional': ['caps_lock']}}, [{'key_code': 'y', 'modifiers': ['left_command', 'left_shift']}])]"
+assert_eq "$(query "scope('$CHAT_RULE', r'^com\\.google\\.antigravity-ide\$')")" "[('frontmost_application_if', True), ('frontmost_application_if', True), ('frontmost_application_if', True), ('frontmost_application_if', True)]"
+assert_eq "$(query "scope('$CHAT_RULE', r'^com\\.google\\.antigravity\$')")" "[('frontmost_application_if', True), ('frontmost_application_if', True), ('frontmost_application_if', True), ('frontmost_application_if', True)]"
+assert_eq "$(query "scope('$CHAT_RULE', r'^com\\.microsoft\\.VSCode\$')")" "[('frontmost_application_if', False), ('frontmost_application_if', False), ('frontmost_application_if', False), ('frontmost_application_if', False)]"
 
 it "Alt+Insert becomes Option+Insert, Shift passes through"
 assert_eq "$(query "mappings('$ALT_INSERT_RULE')")" \

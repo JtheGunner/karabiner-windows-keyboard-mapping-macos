@@ -83,6 +83,7 @@ Source files: `assets/complex_modifications/winkeys-<nn>-*.json`. In
 | 🔁 | 10 | PC-style Ctrl: `left_control+<key>` → `left_command+<key>`                                                             | GUI apps **except** terminals, IDEs, remote/VM clients           |
 | ↪️ | 15 | `Ctrl+Y` (physical QWERTZ Y) → Redo                                                                                    | same scope as 10                                                 |
 | 🔤 | 20 | `Home/End`, `Ctrl+Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete                                 | GUI apps **except** terminals, IDEs, remote/VM clients ¹         |
+| 💬 | 22 | `Ctrl+A` → `Cmd+A` · `Ctrl+C` → `Ctrl+Insert` · `Ctrl+Z` → `Cmd+Z` · `Ctrl+Y` → `Cmd+Shift+Z` (the agent chat swallows or misroutes the originals) | **Antigravity** + **Antigravity IDE** ³                           |
 | 💻 | 25 | `Ctrl+←/→` → `Option+←/→` word motion                                                                                  | **terminals only**                                               |
 | 🖱️ | 35 | `Ctrl+left-click` → `Cmd+left-click` (discontiguous multi-select)                                                      | everywhere                                                       |
 | 📋 | 40 | `Ctrl+Shift+C/V/F/A`, `Ctrl+T/N` · `Ctrl/Shift+Insert` → copy / paste                                                  | **terminals only** · Insert: everywhere except IDEs, remote/VM ² |
@@ -95,6 +96,9 @@ Source files: `assets/complex_modifications/winkeys-<nn>-*.json`. In
 `Ctrl+Home/End` and `Ctrl+←/→`, so these keys also work in its agent-chat input.
 ² IDEs bind `Ctrl/Shift+Insert` in their own keymaps (JetBrains *Default for
 XWin*, VS Code keybindings), so rule 40 leaves them alone there.
+³ Karabiner cannot tell the chat from the integrated terminal, so the
+`karabiner-winkeys` layer of intelli-key-port sends `^A`/`^C`/`^Z`/`^Y` back to
+the terminal. `Ctrl+Shift+Z` is left untouched.
 Port your editor keymap with `intelli-key-port --layer karabiner-winkeys` so
 the editor side matches the rewritten keys.
 
