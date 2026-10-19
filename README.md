@@ -114,7 +114,7 @@ macOS apps cannot tell left from right Option. An IDE shortcut on `Option+3`
 therefore swallows the `#` that `AltGr+3` (right Option) should type. The fix:
 
 - the physical **Alt** key, which arrives as `left_command` on this keyboard
-  (see [MX Keys: Windows mode](#️-logitech-mx-keys-windows-mode)),
+  (see [MX Keys: Windows mode](#-logitech-mx-keys-windows-mode)),
   is rewritten to `Ctrl+Shift+Alt+Cmd+<digit>` inside IDEs;
 - the IDE keymaps bind their tool windows to `Ctrl+Shift+Alt+Cmd+<digit>` and
   keep **no** `Alt+<digit>` binding — for the VS Code family,
