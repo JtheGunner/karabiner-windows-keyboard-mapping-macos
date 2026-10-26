@@ -163,7 +163,7 @@ Karabiner hot-reloads `karabiner.json` — no restart needed.
 > No script can grant the three macOS permissions Karabiner needs. After
 > `setup.sh`, enable them by hand in **System Settings**:
 > **Driver Extensions** → `Karabiner-DriverKit-VirtualHIDDevice`,
-> **Input Monitoring** → `karabiner_grabber`,
+> **Input Monitoring** → `karabiner_grabber` (and `Karabiner-Elements`),
 > **Accessibility** → `Karabiner-Elements`.
 
 ### 🔧 Machine-level settings
