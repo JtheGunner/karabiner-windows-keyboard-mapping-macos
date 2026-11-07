@@ -52,6 +52,7 @@
                 "^com\\.vscodium$",
                 "^com\\.google\\.antigravity$",
                 "^com\\.google\\.antigravity-ide$",
+                "^com\\.google\\.android.studio$",
                 "^com\\.exafunction\\.windsurf$",
                 "^com\\.todesktop\\.230313mzl4w4u92$",
                 "^com\\.jetbrains\\.",

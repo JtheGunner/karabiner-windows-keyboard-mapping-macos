@@ -61,14 +61,21 @@
                     "from": {
                         "key_code": "home",
                         "modifiers": {
-                            "mandatory": ["left_control"],
-                            "optional": ["shift", "caps_lock"]
+                            "mandatory": [
+                                "left_control"
+                            ],
+                            "optional": [
+                                "shift",
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "up_arrow",
-                            "modifiers": ["left_command"]
+                            "modifiers": [
+                                "left_command"
+                            ]
                         }
                     ]
                 },
@@ -129,14 +136,21 @@
                     "from": {
                         "key_code": "end",
                         "modifiers": {
-                            "mandatory": ["left_control"],
-                            "optional": ["shift", "caps_lock"]
+                            "mandatory": [
+                                "left_control"
+                            ],
+                            "optional": [
+                                "shift",
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "down_arrow",
-                            "modifiers": ["left_command"]
+                            "modifiers": [
+                                "left_command"
+                            ]
                         }
                     ]
                 }
@@ -203,13 +217,18 @@
                         "key_code": "home",
                         "modifiers": {
                             "mandatory": [],
-                            "optional": ["shift", "caps_lock"]
+                            "optional": [
+                                "shift",
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "left_arrow",
-                            "modifiers": ["left_command"]
+                            "modifiers": [
+                                "left_command"
+                            ]
                         }
                     ]
                 },
@@ -271,13 +290,18 @@
                         "key_code": "end",
                         "modifiers": {
                             "mandatory": [],
-                            "optional": ["shift", "caps_lock"]
+                            "optional": [
+                                "shift",
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "right_arrow",
-                            "modifiers": ["left_command"]
+                            "modifiers": [
+                                "left_command"
+                            ]
                         }
                     ]
                 }
@@ -343,14 +367,21 @@
                     "from": {
                         "key_code": "left_arrow",
                         "modifiers": {
-                            "mandatory": ["left_control"],
-                            "optional": ["shift", "caps_lock"]
+                            "mandatory": [
+                                "left_control"
+                            ],
+                            "optional": [
+                                "shift",
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "left_arrow",
-                            "modifiers": ["left_option"]
+                            "modifiers": [
+                                "left_option"
+                            ]
                         }
                     ]
                 },
@@ -411,14 +442,21 @@
                     "from": {
                         "key_code": "right_arrow",
                         "modifiers": {
-                            "mandatory": ["left_control"],
-                            "optional": ["shift", "caps_lock"]
+                            "mandatory": [
+                                "left_control"
+                            ],
+                            "optional": [
+                                "shift",
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "right_arrow",
-                            "modifiers": ["left_option"]
+                            "modifiers": [
+                                "left_option"
+                            ]
                         }
                     ]
                 }
@@ -475,6 +513,7 @@
                                 "^com\\.vscodium$",
                                 "^com\\.google\\.antigravity$",
                                 "^com\\.google\\.antigravity-ide$",
+                                "^com\\.google\\.android.studio$",
                                 "^com\\.exafunction\\.windsurf$",
                                 "^com\\.todesktop\\.230313mzl4w4u92$",
                                 "^com\\.jetbrains\\.",
@@ -485,14 +524,20 @@
                     "from": {
                         "key_code": "delete_or_backspace",
                         "modifiers": {
-                            "mandatory": ["left_control"],
-                            "optional": ["caps_lock"]
+                            "mandatory": [
+                                "left_control"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "delete_or_backspace",
-                            "modifiers": ["left_option"]
+                            "modifiers": [
+                                "left_option"
+                            ]
                         }
                     ]
                 },
@@ -544,6 +589,7 @@
                                 "^com\\.vscodium$",
                                 "^com\\.google\\.antigravity$",
                                 "^com\\.google\\.antigravity-ide$",
+                                "^com\\.google\\.android.studio$",
                                 "^com\\.exafunction\\.windsurf$",
                                 "^com\\.todesktop\\.230313mzl4w4u92$",
                                 "^com\\.jetbrains\\.",
@@ -554,14 +600,20 @@
                     "from": {
                         "key_code": "delete_forward",
                         "modifiers": {
-                            "mandatory": ["left_control"],
-                            "optional": ["caps_lock"]
+                            "mandatory": [
+                                "left_control"
+                            ],
+                            "optional": [
+                                "caps_lock"
+                            ]
                         }
                     },
                     "to": [
                         {
                             "key_code": "delete_forward",
-                            "modifiers": ["left_option"]
+                            "modifiers": [
+                                "left_option"
+                            ]
                         }
                     ]
                 }
