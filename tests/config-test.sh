@@ -92,5 +92,14 @@ assert_eq "$(query "mappings('$ALT_INSERT_RULE')")" \
 it "Alt+Insert applies in exactly the IDEs of the Alt+digit rule"
 assert_eq "$(query "rule('$ALT_INSERT_RULE')['manipulators'][0]['conditions'] == rule('$ALT_DIGIT_RULE')['manipulators'][0]['conditions']")" "True"
 
+MOUSE_RULE="Mouse side-keys: Finder back/forward => Cmd+[ / Cmd+] (bracket-position keys; System Settings uses Cmd+Opt); browsers keep the native buttons"
+
+it "mouse back/forward send Cmd+[ / Cmd+] in Finder only"
+assert_eq "$(query "[(m['from']['pointing_button'], m['to'][0]['key_code'], m['to'][0]['modifiers']) for m in rules['$MOUSE_RULE']['manipulators'] if 'finder' in str(m['conditions'])]")" \
+  "[('button4', 'open_bracket', ['left_command']), ('button5', 'close_bracket', ['left_command'])]"
+
+it "mouse side keys leave browsers alone"
+assert_eq "$(query "any(b in str(rules['$MOUSE_RULE']) for b in ('Chrome', 'Safari', 'firefox', 'Edge', 'Brave'))")" "False"
+
 [ "$FAILED" = 0 ] && echo "all passed"
 exit "$FAILED"
