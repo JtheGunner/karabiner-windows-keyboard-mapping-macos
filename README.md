@@ -131,7 +131,7 @@ therefore swallows the `#` that `AltGr+3` (right Option) should type. The fix:
 | `Option+.`            | emoji picker                            |
 | `Option+V`            | macOS clipboard history (disabled in `karabiner.json`) |
 | `Option+Shift+S`      | area screenshot to the clipboard        |
-| mouse side keys       | back / forward                          |
+| mouse side keys       | back / forward in Finder and System Settings (browsers keep the native buttons) |
 | `Cmd+Option+L`        | format document in IDEs                 |
 | `Option+L`            | lock screen                             |
 | `Ctrl+Esc`            | Launchpad (disabled in `karabiner.json`) |

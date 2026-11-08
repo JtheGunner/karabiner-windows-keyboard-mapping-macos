@@ -5248,7 +5248,7 @@
                         ]
                     },
                     {
-                        "description": "Mouse side-keys for browsers and system (forward/back)",
+                        "description": "Mouse side-keys: Finder back/forward (Cmd+Opt+5/6 = Cmd+[ / ] on the Swiss layout); System Settings back/forward; browsers keep the native buttons",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -5264,9 +5264,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "semicolon",
+                                        "key_code": "5",
                                         "modifiers": [
-                                            "left_command"
+                                            "left_command",
+                                            "left_option"
                                         ]
                                     }
                                 ],
@@ -5276,13 +5277,6 @@
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "^org\\.mozilla\\.firefox$",
-                                            "^org\\.mozilla\\.firefoxdeveloperedition$",
-                                            "^org\\.mozilla\\.nightly$",
-                                            "^com\\.microsoft\\.Edge",
-                                            "^com\\.google\\.Chrome$",
-                                            "^com\\.brave\\.Browser$",
-                                            "^com\\.apple\\.Safari$",
                                             "^com\\.apple\\.finder$"
                                         ],
                                         "type": "frontmost_application_if"
@@ -5293,9 +5287,10 @@
                                 },
                                 "to": [
                                     {
-                                        "key_code": "quote",
+                                        "key_code": "6",
                                         "modifiers": [
-                                            "left_command"
+                                            "left_command",
+                                            "left_option"
                                         ]
                                     }
                                 ],
