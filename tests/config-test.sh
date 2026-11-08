@@ -92,5 +92,20 @@ assert_eq "$(query "mappings('$ALT_INSERT_RULE')")" \
 it "Alt+Insert applies in exactly the IDEs of the Alt+digit rule"
 assert_eq "$(query "rule('$ALT_INSERT_RULE')['manipulators'][0]['conditions'] == rule('$ALT_DIGIT_RULE')['manipulators'][0]['conditions']")" "True"
 
+MOUSE_RULE="Mouse side-keys: back / forward => Cmd+Opt+[ / Cmd+Opt+] in every app that lacks native support (Finder, System Settings, ...); browsers, IDEs, terminals, RDP & VM clients keep their own handling"
+
+it "mouse back/forward send Cmd+Opt+[ / Cmd+Opt+]"
+assert_eq "$(query "[(m['from']['pointing_button'], m['to'][0]['key_code'], m['to'][0]['modifiers']) for m in rules['$MOUSE_RULE']['manipulators']]")" \
+  "[('button4', 'open_bracket', ['left_command', 'left_option']), ('button5', 'close_bracket', ['left_command', 'left_option'])]"
+
+it "mouse side keys skip browsers, IDEs, terminals and VM clients but not Finder"
+mouse_scope() {
+  query "[(m['conditions'][0]['type'], r'$1' in m['conditions'][0]['bundle_identifiers']) for m in rules['$MOUSE_RULE']['manipulators']]"
+}
+for app in '^com\.apple\.Safari' '^com\.google\.Chrome' '^org\.mozilla\.firefox$' '^com\.jetbrains\.' '^com\.microsoft\.VSCode$' '^com\.apple\.Terminal$' '^com\.parallels\.desktop$'; do
+  assert_eq "$(mouse_scope "$app")" "[('frontmost_application_unless', True), ('frontmost_application_unless', True)]"
+done
+assert_eq "$(mouse_scope '^com\.apple\.finder$')" "[('frontmost_application_unless', False), ('frontmost_application_unless', False)]"
+
 [ "$FAILED" = 0 ] && echo "all passed"
 exit "$FAILED"
