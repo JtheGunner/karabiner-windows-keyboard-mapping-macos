@@ -5119,7 +5119,133 @@
                                 },
                                 "to": [
                                     {
+                                        "set_variable": {
+                                            "name": "finder_renaming",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
                                         "key_code": "return_or_enter"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[winkeys] Finder: Enter while renaming => Return (confirm rename)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.finder$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "finder_renaming",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "return_or_enter"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "finder_renaming",
+                                            "value": 0
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[winkeys] Finder: Escape while renaming => Escape (cancel rename)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.finder$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "finder_renaming",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "escape"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "finder_renaming",
+                                            "value": 0
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[winkeys] Finder: click while renaming => end rename",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.apple\\.finder$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "variable_if",
+                                        "name": "finder_renaming",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "pointing_button": "button1",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "pointing_button": "button1"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "finder_renaming",
+                                            "value": 0
+                                        }
                                     }
                                 ]
                             }
