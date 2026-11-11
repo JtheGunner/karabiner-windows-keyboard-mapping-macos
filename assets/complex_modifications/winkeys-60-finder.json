@@ -117,46 +117,6 @@
       ]
     },
     {
-      "description": "Finder: click while renaming => end rename",
-      "manipulators": [
-        {
-          "type": "basic",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.finder$"
-              ]
-            },
-            {
-              "type": "variable_if",
-              "name": "finder_renaming",
-              "value": 1
-            }
-          ],
-          "from": {
-            "pointing_button": "button1",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "pointing_button": "button1"
-            },
-            {
-              "set_variable": {
-                "name": "finder_renaming",
-                "value": 0
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "description": "Finder: Enter => Cmd+O (open selected item)",
       "manipulators": [
         {
