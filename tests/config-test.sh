@@ -50,6 +50,9 @@ def scope(description, bundle):
     return [(m["conditions"][0]["type"], bundle in m["conditions"][0]["bundle_identifiers"])
             for m in rule(description)["manipulators"]]
 
+def position(description):
+    return list(rules).index("[winkeys] " + description)
+
 def mappings(description):
     return [(m["from"], m["to"]) for m in rule(description)["manipulators"]]
 
@@ -106,6 +109,36 @@ for app in '^com\.apple\.Safari' '^com\.google\.Chrome' '^org\.mozilla\.firefox$
   assert_eq "$(mouse_scope "$app")" "[('frontmost_application_unless', True), ('frontmost_application_unless', True)]"
 done
 assert_eq "$(mouse_scope '^com\.apple\.finder$')" "[('frontmost_application_unless', False), ('frontmost_application_unless', False)]"
+
+F2_RULE="Finder: F2 => Return (rename)"
+CONFIRM_RULE="Finder: Enter while renaming => Return (confirm rename)"
+CANCEL_RULE="Finder: Escape while renaming => Escape (cancel rename)"
+OPEN_RULE="Finder: Enter => Cmd+O (open selected item)"
+RENAMING_ON="{'set_variable': {'name': 'finder_renaming', 'value': 1}}"
+RENAMING_OFF="{'set_variable': {'name': 'finder_renaming', 'value': 0}}"
+FINDER_ONLY="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.apple\\\\.finder\$']}"
+WHILE_RENAMING="{'type': 'variable_if', 'name': 'finder_renaming', 'value': 1}"
+
+it "F2 starts the rename and remembers it"
+assert_eq "$(query "[m['to'] for m in rule('$F2_RULE')['manipulators']]")" "[[$RENAMING_ON, {'key_code': 'return_or_enter'}]]"
+
+it "Enter while renaming confirms with a plain Return and forgets the rename"
+assert_eq "$(query "mappings('$CONFIRM_RULE')")" "[({'key_code': 'return_or_enter', 'modifiers': {'optional': ['caps_lock']}}, [{'key_code': 'return_or_enter'}, $RENAMING_OFF])]"
+assert_eq "$(query "rule('$CONFIRM_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $WHILE_RENAMING]"
+
+it "Escape while renaming cancels with a plain Escape and forgets the rename"
+assert_eq "$(query "mappings('$CANCEL_RULE')")" "[({'key_code': 'escape', 'modifiers': {'optional': ['caps_lock']}}, [{'key_code': 'escape'}, $RENAMING_OFF])]"
+assert_eq "$(query "rule('$CANCEL_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $WHILE_RENAMING]"
+
+it "no rule reacts to clicks: a click into the name field must not end the remembered rename"
+assert_eq "$(query "[r for r in rules if 'click' in r.lower() and 'Finder' in r]")" "[]"
+
+it "Enter outside a rename still opens the selected item"
+assert_eq "$(query "[m['to'] for m in rule('$OPEN_RULE')['manipulators']]")" "[[{'key_code': 'o', 'modifiers': ['left_command']}]]"
+assert_eq "$(query "rule('$OPEN_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY]"
+
+it "the rename rules come before the Enter-opens rule so they win"
+assert_eq "$(query "position('$CONFIRM_RULE') < position('$OPEN_RULE') and position('$CANCEL_RULE') < position('$OPEN_RULE')")" "True"
 
 [ "$FAILED" = 0 ] && echo "all passed"
 exit "$FAILED"
