@@ -174,8 +174,7 @@
                                     {
                                         "type": "frontmost_application_if",
                                         "bundle_identifiers": [
-                                            "^com\\.apple\\.finder$",
-                                            "^com\\.cocoatech\\.PathFinder$"
+                                            "^com\\.apple\\.finder$"
                                         ]
                                     },
                                     {
@@ -221,8 +220,7 @@
                                     {
                                         "type": "frontmost_application_if",
                                         "bundle_identifiers": [
-                                            "^com\\.apple\\.finder$",
-                                            "^com\\.cocoatech\\.PathFinder$"
+                                            "^com\\.apple\\.finder$"
                                         ]
                                     },
                                     {
@@ -274,8 +272,7 @@
                                     {
                                         "type": "frontmost_application_if",
                                         "bundle_identifiers": [
-                                            "^com\\.apple\\.finder$",
-                                            "^com\\.cocoatech\\.PathFinder$"
+                                            "^com\\.apple\\.finder$"
                                         ]
                                     },
                                     {
@@ -321,8 +318,7 @@
                                     {
                                         "type": "frontmost_application_if",
                                         "bundle_identifiers": [
-                                            "^com\\.apple\\.finder$",
-                                            "^com\\.cocoatech\\.PathFinder$"
+                                            "^com\\.apple\\.finder$"
                                         ]
                                     },
                                     {
@@ -5432,6 +5428,43 @@
                                 "to": [
                                     {
                                         "key_code": "o",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "description": "[winkeys] Path Finder: Delete => Cmd+Backspace (move to Trash)",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "^com\\.cocoatech\\.PathFinder$"
+                                        ]
+                                    },
+                                    {
+                                        "type": "variable_unless",
+                                        "name": "finder_renaming",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "delete_forward",
+                                    "modifiers": {
+                                        "optional": [
+                                            "caps_lock"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "delete_or_backspace",
                                         "modifiers": [
                                             "left_command"
                                         ]
