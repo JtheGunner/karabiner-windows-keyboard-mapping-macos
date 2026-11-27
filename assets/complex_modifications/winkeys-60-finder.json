@@ -10,7 +10,8 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.cocoatech\\.PathFinder$"
               ]
             }
           ],
@@ -45,7 +46,8 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.cocoatech\\.PathFinder$"
               ]
             },
             {
@@ -85,7 +87,8 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.cocoatech\\.PathFinder$"
               ]
             },
             {
@@ -125,7 +128,8 @@
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": [
-                "^com\\.apple\\.finder$"
+                "^com\\.apple\\.finder$",
+                "^com\\.cocoatech\\.PathFinder$"
               ]
             }
           ],
