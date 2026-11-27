@@ -117,7 +117,9 @@ CANCEL_RULE="Finder: Escape while renaming => Escape (cancel rename)"
 OPEN_RULE="Finder: Enter => Cmd+O (open selected item)"
 RENAMING_ON="{'set_variable': {'name': 'finder_renaming', 'value': 1}}"
 RENAMING_OFF="{'set_variable': {'name': 'finder_renaming', 'value': 0}}"
-FINDER_ONLY="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.apple\\\\.finder\$', '^com\\\\.cocoatech\\\\.PathFinder\$']}"
+FINDER_AND_PATH_FINDER="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.apple\\\\.finder\$', '^com\\\\.cocoatech\\\\.PathFinder\$']}"
+FINDER_ONLY="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.apple\\\\.finder\$']}"
+PATH_FINDER_ONLY="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.cocoatech\\\\.PathFinder\$']}"
 WHILE_RENAMING="{'type': 'variable_if', 'name': 'finder_renaming', 'value': 1}"
 
 it "F2 starts the rename and remembers it"
@@ -125,18 +127,18 @@ assert_eq "$(query "[m['to'] for m in rule('$F2_RULE')['manipulators']]")" "[[$R
 
 it "Enter while renaming confirms with a plain Return and forgets the rename"
 assert_eq "$(query "mappings('$CONFIRM_RULE')")" "[({'key_code': 'return_or_enter', 'modifiers': {'optional': ['caps_lock']}}, [{'key_code': 'return_or_enter'}, $RENAMING_OFF])]"
-assert_eq "$(query "rule('$CONFIRM_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $WHILE_RENAMING]"
+assert_eq "$(query "rule('$CONFIRM_RULE')['manipulators'][0]['conditions']")" "[$FINDER_AND_PATH_FINDER, $WHILE_RENAMING]"
 
 it "Escape while renaming cancels with a plain Escape and forgets the rename"
 assert_eq "$(query "mappings('$CANCEL_RULE')")" "[({'key_code': 'escape', 'modifiers': {'optional': ['caps_lock']}}, [{'key_code': 'escape'}, $RENAMING_OFF])]"
-assert_eq "$(query "rule('$CANCEL_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $WHILE_RENAMING]"
+assert_eq "$(query "rule('$CANCEL_RULE')['manipulators'][0]['conditions']")" "[$FINDER_AND_PATH_FINDER, $WHILE_RENAMING]"
 
 it "no rule reacts to clicks: a click into the name field must not end the remembered rename"
 assert_eq "$(query "[r for r in rules if 'click' in r.lower() and 'Finder' in r]")" "[]"
 
 it "Enter outside a rename still opens the selected item"
 assert_eq "$(query "[m['to'] for m in rule('$OPEN_RULE')['manipulators']]")" "[[{'key_code': 'o', 'modifiers': ['left_command']}]]"
-assert_eq "$(query "rule('$OPEN_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY]"
+assert_eq "$(query "rule('$OPEN_RULE')['manipulators'][0]['conditions']")" "[$FINDER_AND_PATH_FINDER]"
 
 it "the rename rules come before the Enter-opens rule so they win"
 assert_eq "$(query "position('$CONFIRM_RULE') < position('$OPEN_RULE') and position('$CANCEL_RULE') < position('$OPEN_RULE')")" "True"
@@ -170,6 +172,12 @@ assert_eq "$(query "rule('$CANCEL_CUT_RULE')['manipulators'][0]['conditions']")"
 
 it "the Finder cut rules come before the generic Ctrl => Cmd swap so they win"
 assert_eq "$(query "all(position(d) < position('$SWAP_RULE') for d in ('$CUT_RULE', '$MOVE_RULE', '$COPY_RULE', '$CANCEL_CUT_RULE'))")" "True"
+
+DELETE_RULE="Path Finder: Delete => Cmd+Backspace (move to Trash)"
+
+it "Delete moves the selection to the Trash in Path Finder only, not while renaming"
+assert_eq "$(query "mappings('$DELETE_RULE')")" "[({'key_code': 'delete_forward', 'modifiers': {'optional': ['caps_lock']}}, [{'key_code': 'delete_or_backspace', 'modifiers': ['left_command']}])]"
+assert_eq "$(query "rule('$DELETE_RULE')['manipulators'][0]['conditions']")" "[$PATH_FINDER_ONLY, $NOT_RENAMING]"
 
 [ "$FAILED" = 0 ] && echo "all passed"
 exit "$FAILED"
