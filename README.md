@@ -82,6 +82,7 @@ Source files: `assets/complex_modifications/winkeys-<nn>-*.json`. In
 | ↩️ | 05 | `Shift+Enter` → real newline (Claude Code, zsh, REPLs)                                                                 | terminals + Windsurf, VSCodium, Code-OSS, Zed                    |
 | 🔁 | 10 | PC-style Ctrl: `left_control+<key>` → `left_command+<key>`                                                             | GUI apps **except** terminals, IDEs, remote/VM clients           |
 | ↪️ | 15 | `Ctrl+Y` (physical QWERTZ Y) → Redo                                                                                    | same scope as 10                                                 |
+| ✂️ | 16 | `Ctrl+X` → copy, then `Ctrl+V` → move (`Cmd+Option+V`); `Ctrl+C` / `Esc` cancel a pending cut. Finder has no native cut       | Finder (not while renaming)                                      |
 | 🔤 | 20 | `Home/End`, `Ctrl+Home/End`, `Ctrl+←/→` word jump, `Ctrl+Backspace/Delete` word delete                                 | GUI apps **except** terminals, IDEs, remote/VM clients ¹         |
 | 💬 | 22 | `Ctrl+A` → `Cmd+A` · `Ctrl+C` → `Ctrl+Insert` · `Ctrl+Z` → `Cmd+Z` · `Ctrl+Y` → `Cmd+Shift+Z` (the agent chat swallows or misroutes the originals) | **Antigravity** + **Antigravity IDE** ³                           |
 | 💻 | 25 | `Ctrl+←/→` → `Option+←/→` word motion                                                                                  | **terminals only**                                               |
