@@ -101,7 +101,7 @@ it "mouse back/forward send Cmd+Opt+[ / Cmd+Opt+]"
 assert_eq "$(query "[(m['from']['pointing_button'], m['to'][0]['key_code'], m['to'][0]['modifiers']) for m in rules['$MOUSE_RULE']['manipulators']]")" \
   "[('button4', 'open_bracket', ['left_command', 'left_option']), ('button5', 'close_bracket', ['left_command', 'left_option'])]"
 
-it "mouse side keys skip browsers, IDEs, terminals and VM clients but not Finder"
+it "mouse side keys skip browsers, IDEs, terminals and VM clients but not Finder or Path Finder"
 mouse_scope() {
   query "[(m['conditions'][0]['type'], r'$1' in m['conditions'][0]['bundle_identifiers']) for m in rules['$MOUSE_RULE']['manipulators']]"
 }
@@ -109,6 +109,7 @@ for app in '^com\.apple\.Safari' '^com\.google\.Chrome' '^org\.mozilla\.firefox$
   assert_eq "$(mouse_scope "$app")" "[('frontmost_application_unless', True), ('frontmost_application_unless', True)]"
 done
 assert_eq "$(mouse_scope '^com\.apple\.finder$')" "[('frontmost_application_unless', False), ('frontmost_application_unless', False)]"
+assert_eq "$(mouse_scope '^com\.cocoatech\.PathFinder$')" "[('frontmost_application_unless', False), ('frontmost_application_unless', False)]"
 
 F2_RULE="Finder: F2 => Return (rename)"
 CONFIRM_RULE="Finder: Enter while renaming => Return (confirm rename)"
@@ -116,7 +117,7 @@ CANCEL_RULE="Finder: Escape while renaming => Escape (cancel rename)"
 OPEN_RULE="Finder: Enter => Cmd+O (open selected item)"
 RENAMING_ON="{'set_variable': {'name': 'finder_renaming', 'value': 1}}"
 RENAMING_OFF="{'set_variable': {'name': 'finder_renaming', 'value': 0}}"
-FINDER_ONLY="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.apple\\\\.finder\$']}"
+FINDER_ONLY="{'type': 'frontmost_application_if', 'bundle_identifiers': ['^com\\\\.apple\\\\.finder\$', '^com\\\\.cocoatech\\\\.PathFinder\$']}"
 WHILE_RENAMING="{'type': 'variable_if', 'name': 'finder_renaming', 'value': 1}"
 
 it "F2 starts the rename and remembers it"
