@@ -140,5 +140,35 @@ assert_eq "$(query "rule('$OPEN_RULE')['manipulators'][0]['conditions']")" "[$FI
 it "the rename rules come before the Enter-opens rule so they win"
 assert_eq "$(query "position('$CONFIRM_RULE') < position('$OPEN_RULE') and position('$CANCEL_RULE') < position('$OPEN_RULE')")" "True"
 
+CUT_RULE="Finder: Ctrl+X => Cmd+C (Finder has no cut; remember to move on paste)"
+MOVE_RULE="Finder: Ctrl+V after Ctrl+X => Cmd+Opt+V (move the cut items here)"
+COPY_RULE="Finder: Ctrl+C => Cmd+C (forgets a pending cut so the next paste copies)"
+CANCEL_CUT_RULE="Finder: Escape after Ctrl+X => Escape (cancel the pending cut)"
+SWAP_RULE="PC-style Ctrl: left_control+<key> => left_command+<key> (all GUI apps; excluded in terminals, RDP & VM clients)"
+CUT_ON="{'set_variable': {'name': 'finder_cut_pending', 'value': 1}}"
+CUT_OFF="{'set_variable': {'name': 'finder_cut_pending', 'value': 0}}"
+NOT_RENAMING="{'type': 'variable_unless', 'name': 'finder_renaming', 'value': 1}"
+CUT_PENDING="{'type': 'variable_if', 'name': 'finder_cut_pending', 'value': 1}"
+CTRL="'modifiers': {'mandatory': ['left_control'], 'optional': ['caps_lock']}"
+
+it "Ctrl+X in Finder copies and remembers the pending cut"
+assert_eq "$(query "mappings('$CUT_RULE')")" "[({'key_code': 'x', $CTRL}, [$CUT_ON, {'key_code': 'c', 'modifiers': ['left_command']}])]"
+assert_eq "$(query "rule('$CUT_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $NOT_RENAMING]"
+
+it "Ctrl+V after a cut moves the items with Cmd+Opt+V and forgets the cut"
+assert_eq "$(query "mappings('$MOVE_RULE')")" "[({'key_code': 'v', $CTRL}, [{'key_code': 'v', 'modifiers': ['left_command', 'left_option']}, $CUT_OFF])]"
+assert_eq "$(query "rule('$MOVE_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $NOT_RENAMING, $CUT_PENDING]"
+
+it "Ctrl+C in Finder forgets a pending cut so the next paste copies"
+assert_eq "$(query "mappings('$COPY_RULE')")" "[({'key_code': 'c', $CTRL}, [$CUT_OFF, {'key_code': 'c', 'modifiers': ['left_command']}])]"
+assert_eq "$(query "rule('$COPY_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $NOT_RENAMING]"
+
+it "Escape after a cut stays a plain Escape and forgets the cut, but not while renaming"
+assert_eq "$(query "mappings('$CANCEL_CUT_RULE')")" "[({'key_code': 'escape', 'modifiers': {'optional': ['caps_lock']}}, [{'key_code': 'escape'}, $CUT_OFF])]"
+assert_eq "$(query "rule('$CANCEL_CUT_RULE')['manipulators'][0]['conditions']")" "[$FINDER_ONLY, $NOT_RENAMING, $CUT_PENDING]"
+
+it "the Finder cut rules come before the generic Ctrl => Cmd swap so they win"
+assert_eq "$(query "all(position(d) < position('$SWAP_RULE') for d in ('$CUT_RULE', '$MOVE_RULE', '$COPY_RULE', '$CANCEL_CUT_RULE'))")" "True"
+
 [ "$FAILED" = 0 ] && echo "all passed"
 exit "$FAILED"
